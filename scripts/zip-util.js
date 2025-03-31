@@ -1,6 +1,7 @@
 // File: zip-util.js
 import { PREFIX, ZIP_TOGGLE } from './constants.js';
 import { appendLog } from './utils.js';
+import { downloadBlob } from './receiver-util.js';
 
 let isZipSelected = true;
 

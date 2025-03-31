@@ -99,7 +99,7 @@ async function finalizeFileHandling(fileName, fileTransferId, fileTransferInfo, 
     }
 }
 
-function downloadBlob(fileName, blob) {
+export function downloadBlob(fileName, blob) {
     appendLog(`Preparing to download file: ${fileName}`);
 
     const reader = new FileReader();
