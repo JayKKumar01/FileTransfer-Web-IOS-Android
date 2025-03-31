@@ -102,11 +102,37 @@ async function finalizeFileHandling(fileName, fileTransferId, fileTransferInfo, 
 
 
 function downloadBlob(fileName, blob) {
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = fileName;
-    link.click();
-    link.remove();
+    const reader = new FileReader();
+
+    reader.onload = function () {
+        const link = document.createElement('a');
+        link.href = reader.result;
+        link.download = fileName;
+        document.body.appendChild(link);
+
+        setTimeout(() => {
+            link.click();
+            document.body.removeChild(link);
+        }, 100);
+    };
+
+    // Safari requires FileReader, while other browsers can use URL.createObjectURL
+    if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
+        reader.readAsDataURL(blob);
+    } else {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+
+        setTimeout(() => {
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url); // Clean up memory
+        }, 100);
+    }
 }
+
 
 
