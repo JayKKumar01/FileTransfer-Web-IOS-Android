@@ -100,47 +100,16 @@ async function finalizeFileHandling(fileName, fileTransferId, fileTransferInfo, 
 }
 
 export function downloadBlob(fileName, blob) {
-    appendLog(`Preparing to download file: ${fileName}`);
-
-    const reader = new FileReader();
-
-    reader.onload = function () {
-        appendLog(`FileReader completed, initiating download for: ${fileName}`);
-        
-        const link = document.createElement('a');
-        link.href = reader.result;
-        link.download = fileName;
-        document.body.appendChild(link);
-
-        setTimeout(() => {
-            appendLog(`Triggering download (Safari method) for: ${fileName}`);
-            link.click();
-            document.body.removeChild(link);
-        }, 100);
-    };
-
-    // Safari requires FileReader, while other browsers can use URL.createObjectURL
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    
     if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
-        appendLog(`Detected Safari, using FileReader for: ${fileName}`);
-        reader.readAsDataURL(blob);
+        window.open(url, '_blank');
     } else {
-        appendLog(`Using createObjectURL for: ${fileName}`);
-        
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = fileName;
-        document.body.appendChild(link);
-
-        setTimeout(() => {
-            appendLog(`Triggering download (createObjectURL method) for: ${fileName}`);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url); // Clean up memory
-            appendLog(`Cleaned up Object URL for: ${fileName}`);
-        }, 100);
+        link.click();
     }
+
+    setTimeout(() => URL.revokeObjectURL(url), 100);
 }
-
-
-
