@@ -99,18 +99,21 @@ async function finalizeFileHandling(fileName, fileTransferId, fileTransferInfo, 
     }
 }
 
-
-
 function downloadBlob(fileName, blob) {
+    appendLog(`Preparing to download file: ${fileName}`);
+
     const reader = new FileReader();
 
     reader.onload = function () {
+        appendLog(`FileReader completed, initiating download for: ${fileName}`);
+        
         const link = document.createElement('a');
         link.href = reader.result;
         link.download = fileName;
         document.body.appendChild(link);
 
         setTimeout(() => {
+            appendLog(`Triggering download (Safari method) for: ${fileName}`);
             link.click();
             document.body.removeChild(link);
         }, 100);
@@ -118,8 +121,11 @@ function downloadBlob(fileName, blob) {
 
     // Safari requires FileReader, while other browsers can use URL.createObjectURL
     if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
+        appendLog(`Detected Safari, using FileReader for: ${fileName}`);
         reader.readAsDataURL(blob);
     } else {
+        appendLog(`Using createObjectURL for: ${fileName}`);
+        
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
@@ -127,9 +133,11 @@ function downloadBlob(fileName, blob) {
         document.body.appendChild(link);
 
         setTimeout(() => {
+            appendLog(`Triggering download (createObjectURL method) for: ${fileName}`);
             link.click();
             document.body.removeChild(link);
             URL.revokeObjectURL(url); // Clean up memory
+            appendLog(`Cleaned up Object URL for: ${fileName}`);
         }, 100);
     }
 }
