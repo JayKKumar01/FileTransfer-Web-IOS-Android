@@ -105,11 +105,12 @@ export function downloadBlob(fileName, blob) {
     link.href = url;
     link.download = fileName;
     
-    if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
-        window.open(url, '_blank');
-    } else {
-        link.click();
-    }
+    // if (navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome")) {
+    //     window.open(url, '_blank');
+    // } else {
+    //     link.click();
+    // }
+    link.click();
 
     setTimeout(() => URL.revokeObjectURL(url), 100);
 }
