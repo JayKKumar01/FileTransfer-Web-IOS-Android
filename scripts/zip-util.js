@@ -33,24 +33,41 @@ export async function addToZip(fileName, blob, isLastFile) {
     }
 }
 
-
-
 async function zipAndDownload() {
     try {
-        appendLog("Generating zip file to download...");
+        appendLog("Generating ZIP file for download...");
+
         const zipBlob = await jsZip.generateAsync({ type: 'blob' });
         appendLog("ZIP file generated successfully.");
 
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(zipBlob);
-        link.download = `${PREFIX}${Date.now()}.zip`;
+        // Reusing downloadBlob to handle Safari & other browsers correctly
+        downloadBlob(`${PREFIX}${Date.now()}.zip`, zipBlob);
 
-        link.click();
-
-        URL.revokeObjectURL(link.href);
         appendLog("Downloaded all files as ZIP!");
     } catch (error) {
-        appendLog(`Error during zip generation: ${error.message}`);
-        console.error("Error generating zip:", error);
+        appendLog(`Error during ZIP generation: ${error.message}`);
+        console.error("Error generating ZIP:", error);
     }
 }
+
+
+
+// async function zipAndDownload() {
+//     try {
+//         appendLog("Generating zip file to download...");
+//         const zipBlob = await jsZip.generateAsync({ type: 'blob' });
+//         appendLog("ZIP file generated successfully.");
+
+//         const link = document.createElement('a');
+//         link.href = URL.createObjectURL(zipBlob);
+//         link.download = `${PREFIX}${Date.now()}.zip`;
+
+//         link.click();
+
+//         URL.revokeObjectURL(link.href);
+//         appendLog("Downloaded all files as ZIP!");
+//     } catch (error) {
+//         appendLog(`Error during zip generation: ${error.message}`);
+//         console.error("Error generating zip:", error);
+//     }
+// }
