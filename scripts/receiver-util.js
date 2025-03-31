@@ -1,3 +1,4 @@
+// File: receiver-util.js
 import { getConnection } from './peer-util.js';
 import {
     appendLog,
@@ -26,32 +27,26 @@ export function ready(data) {
     }
 }
 
-export async function handleFileData(data) {
+export function handleFileData(data) {
     const fileName = data.name;
     const fileData = data.data;
     const fileTransferId = data.id;
     const isLastFile = data.isLastFile;
-    const totalSize = data.totalSize;
 
     if (!receivedFileData.has(fileTransferId)) {
-        const stream = new WritableStream({
-            write(chunk) {
-                return fileTransferInfo.writer.write(chunk);
-            },
-            close() {
-                finalizeFileHandling(fileName, fileTransferId, isLastFile);
-            },
-        });
-
-        const writer = stream.getWriter();
-        receivedFileData.set(fileTransferId, { writer, totalSize, receivedSize: 0 });
+        receivedFileData.set(fileTransferId, { chunks: [], totalSize: 0 });
     }
 
     const fileTransferInfo = receivedFileData.get(fileTransferId);
-    await fileTransferInfo.writer.write(fileData);
-    fileTransferInfo.receivedSize += fileData.byteLength;
+    // Store each chunk as a Blob instead of ArrayBuffer
+    const chunkBlob = new Blob([fileData]);
+    fileTransferInfo.chunks.push(chunkBlob);
+    fileTransferInfo.totalSize += fileData.byteLength;
 
-    const progress = Math.floor((fileTransferInfo.receivedSize / totalSize) * 100);
+    const totalSize = data.totalSize;
+    const receivedSize = fileTransferInfo.totalSize;
+    const progress = Math.floor((receivedSize / totalSize) * 100);
+
     const timeElapsed = (new Date() - transferTime) / 1000;
     const transferRate = timeElapsed > 0 ? Math.floor((fileData.byteLength / 1024) / timeElapsed) : 0;
     transferTime = new Date();
@@ -59,9 +54,15 @@ export async function handleFileData(data) {
     updateProgressBar("Download", progress, transferRate);
     updateSender(fileTransferId, progress, transferRate);
 
-    if (fileTransferInfo.receivedSize === totalSize) {
-        await fileTransferInfo.writer.close();
-        receivedFileData.delete(fileTransferId);
+    if (receivedSize === totalSize) {
+        const timeDiff = new Date() - time;
+        const finalRate = calculateTransferRate(totalSize, timeDiff);
+        appendLog(`File transfer completed in ${timeDiff / 1000} seconds. Transfer rate: ${finalRate} KB/s`);
+
+        // Use setTimeout to yield to the event loop, allowing UI updates
+        setTimeout(() => {
+            finalizeFileHandling(fileName, fileTransferId, fileTransferInfo, isLastFile);
+        }, 0);
     }
 }
 
@@ -74,20 +75,19 @@ function updateSender(id, progress, transferRate) {
     });
 }
 
-async function finalizeFileHandling(fileName, fileTransferId, isLastFile) {
+async function finalizeFileHandling(fileName, fileTransferId, fileTransferInfo, isLastFile) {
     try {
-        const fileTransferInfo = receivedFileData.get(fileTransferId);
-        if (!fileTransferInfo) return;
-        
-        let blob = new Blob([fileTransferInfo.writer]);
-        
+        // Create the final Blob from the array of Blob chunks
+        const blob = new Blob(fileTransferInfo.chunks, { type: 'application/octet-stream' });
+
         if (getIsZipSelected() && isMultipleFiles) {
             await addToZip(fileName, blob, isLastFile);
         } else {
             downloadBlob(fileName, blob);
         }
 
-        blob = null;
+        // Cleanup
+        fileTransferInfo.chunks = [];
         receivedFileData.delete(fileTransferId);
 
         if (isLastFile) {
@@ -105,7 +105,8 @@ export function downloadBlob(fileName, blob) {
     const link = document.createElement('a');
     link.href = url;
     link.download = fileName;
+    document.body.appendChild(link);
     link.click();
-
-    setTimeout(() => URL.revokeObjectURL(url), 100);
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
 }
