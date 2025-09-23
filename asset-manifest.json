@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/FileTransfer-Web-IOS-Android-2/static/css/main.711ad3ae.css",
+    "main.js": "/FileTransfer-Web-IOS-Android-2/static/js/main.9929e7ee.js",
+    "static/js/453.50fbc459.chunk.js": "/FileTransfer-Web-IOS-Android-2/static/js/453.50fbc459.chunk.js",
+    "index.html": "/FileTransfer-Web-IOS-Android-2/index.html",
+    "main.711ad3ae.css.map": "/FileTransfer-Web-IOS-Android-2/static/css/main.711ad3ae.css.map",
+    "main.9929e7ee.js.map": "/FileTransfer-Web-IOS-Android-2/static/js/main.9929e7ee.js.map",
+    "453.50fbc459.chunk.js.map": "/FileTransfer-Web-IOS-Android-2/static/js/453.50fbc459.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.711ad3ae.css",
+    "static/js/main.9929e7ee.js"
+  ]
+}
