@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/FileTransfer-Web-IOS-Android-2/static/css/main.0bce36e3.css",
-    "main.js": "/FileTransfer-Web-IOS-Android-2/static/js/main.49e67cef.js",
+    "main.css": "/FileTransfer-Web-IOS-Android-2/static/css/main.bc9b3e8d.css",
+    "main.js": "/FileTransfer-Web-IOS-Android-2/static/js/main.3c6c8465.js",
     "static/js/453.50fbc459.chunk.js": "/FileTransfer-Web-IOS-Android-2/static/js/453.50fbc459.chunk.js",
     "index.html": "/FileTransfer-Web-IOS-Android-2/index.html",
-    "main.0bce36e3.css.map": "/FileTransfer-Web-IOS-Android-2/static/css/main.0bce36e3.css.map",
-    "main.49e67cef.js.map": "/FileTransfer-Web-IOS-Android-2/static/js/main.49e67cef.js.map",
+    "main.bc9b3e8d.css.map": "/FileTransfer-Web-IOS-Android-2/static/css/main.bc9b3e8d.css.map",
+    "main.3c6c8465.js.map": "/FileTransfer-Web-IOS-Android-2/static/js/main.3c6c8465.js.map",
     "453.50fbc459.chunk.js.map": "/FileTransfer-Web-IOS-Android-2/static/js/453.50fbc459.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0bce36e3.css",
-    "static/js/main.49e67cef.js"
+    "static/css/main.bc9b3e8d.css",
+    "static/js/main.3c6c8465.js"
   ]
 }
