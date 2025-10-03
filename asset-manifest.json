@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/FileTransfer-Web-IOS-Android-2/static/css/main.3d4953ff.css",
-    "main.js": "/FileTransfer-Web-IOS-Android-2/static/js/main.9ec19f1a.js",
+    "main.css": "/FileTransfer-Web-IOS-Android-2/static/css/main.dd158411.css",
+    "main.js": "/FileTransfer-Web-IOS-Android-2/static/js/main.8a1d90f3.js",
     "static/js/451.31e6e9c6.chunk.js": "/FileTransfer-Web-IOS-Android-2/static/js/451.31e6e9c6.chunk.js",
     "static/js/453.50fbc459.chunk.js": "/FileTransfer-Web-IOS-Android-2/static/js/453.50fbc459.chunk.js",
     "index.html": "/FileTransfer-Web-IOS-Android-2/index.html",
-    "main.3d4953ff.css.map": "/FileTransfer-Web-IOS-Android-2/static/css/main.3d4953ff.css.map",
-    "main.9ec19f1a.js.map": "/FileTransfer-Web-IOS-Android-2/static/js/main.9ec19f1a.js.map",
+    "main.dd158411.css.map": "/FileTransfer-Web-IOS-Android-2/static/css/main.dd158411.css.map",
+    "main.8a1d90f3.js.map": "/FileTransfer-Web-IOS-Android-2/static/js/main.8a1d90f3.js.map",
     "451.31e6e9c6.chunk.js.map": "/FileTransfer-Web-IOS-Android-2/static/js/451.31e6e9c6.chunk.js.map",
     "453.50fbc459.chunk.js.map": "/FileTransfer-Web-IOS-Android-2/static/js/453.50fbc459.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3d4953ff.css",
-    "static/js/main.9ec19f1a.js"
+    "static/css/main.dd158411.css",
+    "static/js/main.8a1d90f3.js"
   ]
 }
