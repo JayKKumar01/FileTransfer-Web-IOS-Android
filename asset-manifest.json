@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/FileTransfer-Web-IOS-Android-2/static/css/main.239962c8.css",
-    "main.js": "/FileTransfer-Web-IOS-Android-2/static/js/main.f876f545.js",
-    "static/js/451.31e6e9c6.chunk.js": "/FileTransfer-Web-IOS-Android-2/static/js/451.31e6e9c6.chunk.js",
-    "static/js/453.50fbc459.chunk.js": "/FileTransfer-Web-IOS-Android-2/static/js/453.50fbc459.chunk.js",
-    "index.html": "/FileTransfer-Web-IOS-Android-2/index.html",
-    "main.239962c8.css.map": "/FileTransfer-Web-IOS-Android-2/static/css/main.239962c8.css.map",
-    "main.f876f545.js.map": "/FileTransfer-Web-IOS-Android-2/static/js/main.f876f545.js.map",
-    "451.31e6e9c6.chunk.js.map": "/FileTransfer-Web-IOS-Android-2/static/js/451.31e6e9c6.chunk.js.map",
-    "453.50fbc459.chunk.js.map": "/FileTransfer-Web-IOS-Android-2/static/js/453.50fbc459.chunk.js.map"
+    "main.css": "/FileTransfer-Web-IOS-Android/static/css/main.239962c8.css",
+    "main.js": "/FileTransfer-Web-IOS-Android/static/js/main.ce2cf331.js",
+    "static/js/451.31e6e9c6.chunk.js": "/FileTransfer-Web-IOS-Android/static/js/451.31e6e9c6.chunk.js",
+    "static/js/453.50fbc459.chunk.js": "/FileTransfer-Web-IOS-Android/static/js/453.50fbc459.chunk.js",
+    "index.html": "/FileTransfer-Web-IOS-Android/index.html",
+    "main.239962c8.css.map": "/FileTransfer-Web-IOS-Android/static/css/main.239962c8.css.map",
+    "main.ce2cf331.js.map": "/FileTransfer-Web-IOS-Android/static/js/main.ce2cf331.js.map",
+    "451.31e6e9c6.chunk.js.map": "/FileTransfer-Web-IOS-Android/static/js/451.31e6e9c6.chunk.js.map",
+    "453.50fbc459.chunk.js.map": "/FileTransfer-Web-IOS-Android/static/js/453.50fbc459.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.239962c8.css",
-    "static/js/main.f876f545.js"
+    "static/js/main.ce2cf331.js"
   ]
 }
